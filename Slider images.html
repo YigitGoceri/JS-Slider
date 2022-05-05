@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  
+
+    <style>
+
+        *{margin: 0;
+        padding: 0;}
+
+body{
+    box-sizing: border-box;
+    background-color: rgb(45, 44, 44);
+    height: 100vh;
+   display: flex;
+   flex-direction: column;
+    
+}
+
+h2{
+    
+position: absolute;
+left: 50%;
+top: 20px;
+transform: translateX(-50%);
+padding: 20px 30px;
+border: 5px solid black;
+margin-bottom: 20px;
+letter-spacing: 5px;
+color: antiquewhite;
+
+    }
+
+ #kapsayici{
+     max-width: 640px;
+     position: relative;
+     left: 50%;
+     top: 50%;
+     transform: translate(-50%,-50%);
+
+ }
+
+ .resim{
+     width: 100%;
+     display: none;
+ }
+
+ .aktif{
+     display: block;
+ }
+
+ .aktifkucuk{
+     opacity: 1;
+     transition: opacity 1s ease;
+ }
+
+ul{
+    list-style: none;
+    margin-top: 10px;
+    text-align: center;
+}
+
+ li{
+     display: inline-block;
+     cursor: pointer;
+     opacity: 0.5;
+ }
+
+ img{
+     width: 100%;
+     border-radius: 10px;
+ }
+
+ li:hover{
+     opacity: 1;
+     transition: 0.5s ease-in-out;
+ }
+
+
+footer{
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 20px;
+    color: antiquewhite;
+    font-size: 15px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    letter-spacing: 5px;
+}
+
+    </style>
+
+
+
+
+</head>
+<body>
+    <h2>Sample Slider</h2>
+<div id="kapsayici"onmouseout="basla()" onmouseover="dur()">
+    <div class="resim"> <img src="images/resim1.jpg" alt="resimler"></div>
+    <div class="resim"> <img src="images/resim2.jpg" alt="resimler"></div>
+    <div class="resim"> <img src="images/resim3.jpg" alt="resimler"></div>
+    <div class="resim"> <img src="images/resim4.jpg" alt="resimler"></div>
+
+
+    <ul>
+        <li><img src="images/kresim1.jpg" alt="kresimler" onclick="galeri(0)"></li>
+        <li><img src="images/kresim2.jpg" alt="kresimler" onclick="galeri(1)"></li>
+        <li><img src="images/kresim3.jpg" alt="kresimler" onclick="galeri(2)"></li>
+        <li><img src="images/kresim4.jpg" alt="kresimler" onclick="galeri(3)"></li>
+        </ul>
+
+
+
+</div>
+
+<footer>Created by YigitGoceri</footer>
+
+<script>
+
+    var resim=document.getElementsByClassName("resim");
+    var kresim=document.getElementsByTagName("li");
+
+    var index=0;
+
+    galeri(index);
+    basla();
+
+    function galeri(indis) {
+        
+        index=indis;
+        
+        if(index>3) {
+            index=0;
+        }
+
+        else if(index<0) {
+            index=3;
+        }
+
+        for(i=0;i<resim.length;i++) {
+
+            resim[i].classList.remove("aktif");
+            kresim[i].classList.remove("aktifkucuk")
+
+        }
+        resim[index].classList.add("aktif");
+        kresim[index].classList.add("aktifkucuk");
+
+        console.log(index);
+
+    }
+
+    function sonraki() {
+        index++;
+        galeri(index);
+    }
+    
+    function basla() {
+        
+       zaman= setInterval(sonraki,1000)
+        
+    }
+
+    function dur() {
+    
+        clearInterval(zaman);
+
+    }
+    
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>
